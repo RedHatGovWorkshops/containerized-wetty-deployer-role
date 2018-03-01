@@ -33,13 +33,13 @@ objects:
         uri: ${GITHUB_REPOSITORY_URL}
       type: Git
     strategy:
-      dockerStrategy: null
+      dockerStrategy:
+        env:
+        - name: "WETTY_PASSWORD"
+          value: ${WETTY_PASSWORD}
+        - name: "APP_DOMAIN"
+          value: ${APP_DOMAIN}
       type: Docker
-      env:
-      - name: "WETTY_PASSWORD"
-        value: ${WETTY_PASSWORD}
-      - name: "APP_DOMAIN"
-        value: ${APP_DOMAIN}
     triggers:
     - github:
         secret: ${GITHUB_WEBHOOK_SECRET}
