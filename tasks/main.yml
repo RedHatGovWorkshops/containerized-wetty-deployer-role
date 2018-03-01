@@ -20,7 +20,7 @@
     dest: ~/wetty-openssh.yml
   
 - name: containerized-wetty-deployer - Process Template for OpenSSH Container
-  shell: "oc process -f ~/wetty-openssh.yml -n openshift -v WETTY_PASSWORD={{ workshop_password }} | oc create -f -"
+  shell: "oc process -f ~/wetty-openssh.yml -n openshift -v WETTY_PASSWORD={{ workshop_password }} -v APP_DOMAIN=apps.ocp.{{ domain_name }} | oc create -f -"
   ignore_errors: true
 
 - name: containerized-wetty-deployer - Upload Template for Wetty Ephemeral Container
