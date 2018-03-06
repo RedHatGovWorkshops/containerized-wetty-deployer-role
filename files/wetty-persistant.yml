@@ -7,6 +7,8 @@ metadata:
     description: Web Based Terminal Interface (Persistant)
     iconClass: icon-nodejs
     tags: tty,http
+    template.openshift.io/bindable: "false"
+    openshift.io/display-name: Wetty (Persistant)
   creationTimestamp: null
   name: wetty-persistant
 objects:

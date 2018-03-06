@@ -1,38 +1,42 @@
-Role Name
+Containerized Wetty Deployer
 =========
 
-A brief description of the role goes here.
+Wetty is a NodeJS powered web based terminal.  This role adds and processes the templates necessary to deploy a containerized Wetty in an OpenShift cluster.  The components are added to the "openshift" namespace by default, making them available to all users.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role requires an OpenShift Container Platform 3.7+ cluster.  This role assumes access to a host with the **oc** CLI tool.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+```yaml
+---
+# defaults file for containerized-wetty-deployer
+# This is the user's login password in the terminal.
+workshop_password: wetty
+# The namespace to which ot add the containerized Wetty components.
+component_namespace: openshift
+```
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+- name: Workshop S2I | Containerized Wetty
+  hosts: openshift_masters
+  become: yes
+  roles:
+    - containerized-wetty-deployer-role
+```
 
 License
 -------
 
-BSD
+GPLv3
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Ken Evensen is a Solutions Architect with Red Hat.
